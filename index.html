@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC Roofing — Built to Outlast the Storm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2027;
+    --ink-soft:#2C333D;
+    --stone:#EFEBE2;
+    --stone-dark:#E2DCCE;
+    --copper:#A8502B;
+    --copper-dark:#8A3F21;
+    --slate:#42505E;
+    --white:#FAF9F6;
+    --line: rgba(28,32,39,0.12);
+    --line-light: rgba(250,249,246,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .mark{
+    width:30px; height:22px;
+    position:relative;
+    flex-shrink:0;
+  }
+  .logo .mark svg{width:100%; height:100%;}
+  .nav-links{
+    display:flex; align-items:center; gap:34px;
+    font-size:0.95rem;
+  }
+  .nav-links a{opacity:0.78; transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--white);
+    padding:11px 20px;
+    font-size:0.92rem;
+    font-weight:500;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .nav-toggle{display:none;}
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .nav-cta{padding:9px 16px; font-size:0.85rem;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--ink);
+    color:var(--white);
+    overflow:hidden;
+    padding:92px 0 0;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:40px;
+    align-items:center;
+    position:relative;
+  }
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr; padding-bottom:40px;}
+  }
+  .hero-eyebrow{
+    color:var(--copper);
+    font-size:0.95rem;
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--copper);
+  }
+  .hero p.lead{
+    font-size:1.08rem;
+    color:rgba(250,249,246,0.76);
+    max-width:460px;
+    margin-bottom:34px;
+  }
+  .btn-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px;}
+  .btn{
+    padding:14px 26px;
+    font-size:0.95rem;
+    font-weight:600;
+    border-radius:2px;
+    display:inline-block;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--copper); color:var(--white);}
+  .btn-primary:hover{background:var(--copper-dark);}
+  .btn-ghost{border-color:var(--line-light); color:var(--white);}
+  .btn-ghost:hover{background:rgba(250,249,246,0.08);}
+
+  /* roofline illustration */
+  .roofline{
+    position:relative;
+    height:100%;
+    min-height:280px;
+  }
+  .roofline svg{width:100%; height:auto; display:block;}
+
+  .trust-strip{
+    border-top:1px solid var(--line-light);
+    padding:22px 0;
+  }
+  .trust-strip .wrap{
+    display:flex; flex-wrap:wrap;
+    gap:14px 40px;
+    font-size:0.88rem;
+    color:rgba(250,249,246,0.7);
+  }
+  .trust-strip span{display:flex; align-items:center; gap:9px;}
+  .trust-strip .dot{width:5px; height:5px; background:var(--copper); border-radius:50%; flex-shrink:0;}
+
+  /* ---------- Section shared ---------- */
+  section{padding:88px 0;}
+  @media (max-width:640px){ section{padding:60px 0;} }
+  .section-head{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-bottom:52px;
+    align-items:end;
+  }
+  @media (max-width:760px){
+    .section-head{grid-template-columns:1fr; gap:14px;}
+  }
+  .section-head h2{font-size:clamp(1.8rem, 3.4vw, 2.5rem);}
+  .section-head p{color:var(--slate); font-size:1.02rem;}
+  .kicker{
+    font-size:0.86rem;
+    font-weight:600;
+    color:var(--copper);
+    margin-bottom:12px;
+  }
+
+  /* ---------- About ---------- */
+  .about{background:var(--white);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media (max-width:760px){ .about-grid{grid-template-columns:1fr; gap:30px;} }
+  .stat-list{display:flex; flex-direction:column; gap:0;}
+  .stat-list .stat{
+    padding:20px 0;
+    border-top:1px solid var(--line);
+  }
+  .stat-list .stat:last-child{border-bottom:1px solid var(--line);}
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-size:2.2rem;
+    font-weight:600;
+    color:var(--copper);
+    line-height:1;
+  }
+  .stat .label{font-size:0.9rem; color:var(--slate); margin-top:6px;}
+  .about-copy p{margin-bottom:18px; color:var(--ink-soft); max-width:560px;}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--stone);}
+  .service-row{
+    display:grid;
+    grid-template-columns:48px 1fr auto;
+    gap:24px;
+    align-items:center;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .service-list .service-row:last-child{border-bottom:1px solid var(--line);}
+  .service-row .idx{
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+    color:var(--copper);
+    font-weight:600;
+  }
+  .service-row h3{font-size:1.25rem; font-weight:600;}
+  .service-row p{color:var(--slate); font-size:0.95rem; margin-top:4px; max-width:480px;}
+  .service-row .arrow{
+    font-size:1.3rem;
+    color:var(--copper);
+    transition:transform .18s;
+  }
+  .service-row:hover .arrow{transform:translateX(4px);}
+  @media (max-width:640px){
+    .service-row{grid-template-columns:34px 1fr; }
+    .service-row .arrow{display:none;}
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery{background:var(--white);}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  .gallery-item{
+    background:var(--stone);
+    aspect-ratio:4/3;
+    position:relative;
+    display:flex; align-items:flex-end;
+    padding:18px;
+    overflow:hidden;
+  }
+  .gallery-item svg{position:absolute; inset:0; width:100%; height:100%;}
+  .gallery-item .tag{
+    position:relative;
+    z-index:2;
+    background:var(--ink);
+    color:var(--white);
+    font-size:0.78rem;
+    padding:6px 10px;
+    border-radius:2px;
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial{
+    background:var(--ink);
+    color:var(--white);
+  }
+  .testimonial .wrap{max-width:720px;}
+  .testimonial blockquote{
+    font-family:'Fraunces', serif;
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    font-weight:500;
+    line-height:1.35;
+    margin-bottom:28px;
+  }
+  .testimonial .who{display:flex; align-items:center; gap:14px;}
+  .testimonial .avatar{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--copper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+  }
+  .testimonial .who-name{font-weight:600;}
+  .testimonial .who-role{font-size:0.88rem; color:rgba(250,249,246,0.62);}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--stone);}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+  @media (max-width:760px){ .contact-grid{grid-template-columns:1fr; gap:36px;} }
+  .contact-info h2{font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:16px;}
+  .contact-info p{color:var(--slate); margin-bottom:28px; max-width:420px;}
+  .contact-detail{
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .contact-detail:last-child{border-bottom:1px solid var(--line);}
+  .contact-detail .label{font-size:0.82rem; color:var(--slate); margin-bottom:4px;}
+  .contact-detail .value{font-weight:600; font-size:1.05rem;}
+
+  form{display:flex; flex-direction:column; gap:14px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:0.85rem; color:var(--slate);}
+  .field input, .field textarea{
+    border:1px solid var(--line);
+    background:var(--white);
+    padding:13px 14px;
+    font-family:inherit;
+    font-size:0.95rem;
+    border-radius:2px;
+    color:var(--ink);
+  }
+  .field input:focus, .field textarea:focus{
+    outline:2px solid var(--copper);
+    outline-offset:1px;
+  }
+  .field textarea{resize:vertical; min-height:96px;}
+  .submit-btn{
+    background:var(--copper);
+    color:var(--white);
+    padding:15px 24px;
+    border:none;
+    font-family:inherit;
+    font-size:0.95rem;
+    font-weight:600;
+    border-radius:2px;
+    cursor:pointer;
+    margin-top:4px;
+  }
+  .submit-btn:hover{background:var(--copper-dark);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(250,249,246,0.6);
+    padding:40px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+    font-size:0.86rem;
+  }
+  footer .logo{color:var(--white); font-size:1.1rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav wrap">
+    <div class="logo">
+      <span class="mark">
+        <svg viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 20L15 2L29 20" stroke="#A8502B" stroke-width="2.4" stroke-linecap="square"/>
+          <path d="M6 20L15 8L24 20" stroke="#1C2027" stroke-width="2.4" stroke-linecap="square"/>
+        </svg>
+      </span>
+      ABC Roofing
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get a Free Quote</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="hero-eyebrow">Residential &amp; Commercial Roofing</div>
+      <h1>Built to outlast<br><em>the storm.</em></h1>
+      <p class="lead">Thirty years of keeping roofs — and the people under them — dry, safe, and standing strong against anything the weather sends.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn btn-ghost">Our Services</a>
+      </div>
+    </div>
+    <div class="roofline">
+      <svg viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 320V160L120 90L210 160V320" stroke="#A8502B" stroke-width="2" opacity="0.9"/>
+        <path d="M130 320V200L210 140L290 200V320" stroke="#5B6774" stroke-width="2" opacity="0.6"/>
+        <path d="M230 320V230L300 180L370 230V320" stroke="#A8502B" stroke-width="2" opacity="0.4"/>
+        <line x1="30" y1="160" x2="210" y2="160" stroke="#A8502B" stroke-width="1" opacity="0.3"/>
+        <line x1="130" y1="200" x2="290" y2="200" stroke="#5B6774" stroke-width="1" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="trust-strip">
+    <div class="wrap">
+      <span><span class="dot"></span>Licensed &amp; insured</span>
+      <span><span class="dot"></span>Free, no-pressure estimates</span>
+      <span><span class="dot"></span>Workmanship warranty on every job</span>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="stat-list">
+      <div class="stat">
+        <div class="num">30+</div>
+        <div class="label">Years in business</div>
+      </div>
+      <div class="stat">
+        <div class="num">1,400+</div>
+        <div class="label">Roofs completed</div>
+      </div>
+      <div class="stat">
+        <div class="num">4.9★</div>
+        <div class="label">Average customer rating</div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <div class="kicker">About ABC Roofing</div>
+      <h2 style="font-size:clamp(1.8rem,3.2vw,2.3rem); margin-bottom:20px;">A local crew that treats your roof like it's our own.</h2>
+      <p>ABC Roofing started as a two-person operation and grew the old-fashioned way — one honest estimate and one clean job at a time. Today our crew handles everything from a single storm-damaged section to a full tear-off and replacement.</p>
+      <p>We show up when we say we will, we clean up after ourselves, and we stand behind every roof we put on with a real workmanship warranty — not just the manufacturer's paperwork.</p>
+      <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Talk to the crew</a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">What we do</div>
+        <h2>Roofing services built around your situation.</h2>
+      </div>
+      <p>From a small leak to a full replacement, we scope the job honestly and walk you through the options before any work starts.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <div class="idx">01</div>
+        <div>
+          <h3>Roof Replacement</h3>
+          <p>Full tear-off and re-roof with materials matched to your home and your budget.</p>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">02</div>
+        <div>
+          <h3>Repairs &amp; Leak Fixes</h3>
+          <p>Fast response for storm damage, missing shingles, and leaks before they spread.</p>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">03</div>
+        <div>
+          <h3>Inspections &amp; Estimates</h3>
+          <p>A straight answer on your roof's condition — no pressure, no upsell.</p>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">04</div>
+        <div>
+          <h3>Commercial Roofing</h3>
+          <p>Flat and low-slope systems for retail, office, and industrial buildings.</p>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Recent work</div>
+        <h2>A few roofs we're proud of.</h2>
+      </div>
+      <p>Project photos go here — swapped in once we're working together.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <svg viewBox="0 0 300 225" preserveAspectRatio="none"><rect width="300" height="225" fill="#E2DCCE"/><path d="M0 225V140L150 60L300 140V225" stroke="#A8502B" stroke-width="2" fill="none" opacity="0.5"/></svg>
+        <span class="tag">Before &amp; After — Maple St.</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 300 225" preserveAspectRatio="none"><rect width="300" height="225" fill="#E8E2D4"/><path d="M0 225V150L150 75L300 150V225" stroke="#42505E" stroke-width="2" fill="none" opacity="0.5"/></svg>
+        <span class="tag">Full Replacement — Cedar Ave.</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 300 225" preserveAspectRatio="none"><rect width="300" height="225" fill="#E2DCCE"/><path d="M0 225V155L150 85L300 155V225" stroke="#A8502B" stroke-width="2" fill="none" opacity="0.5"/></svg>
+        <span class="tag">Storm Repair — 6th St.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap">
+    <blockquote>"They found the leak our last three contractors missed, fixed it in a day, and didn't try to sell us a roof we didn't need yet."</blockquote>
+    <div class="who">
+      <div class="avatar">J</div>
+      <div>
+        <div class="who-name">Jane Carter</div>
+        <div class="who-role">Homeowner, Maple St.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <div class="kicker">Get in touch</div>
+      <h2>Ready for an honest estimate?</h2>
+      <p>Call, text, or send the form — we usually get back to you the same day.</p>
+      <div class="contact-detail">
+        <div class="label">Call or text</div>
+        <div class="value">(555) 010-7742</div>
+      </div>
+      <div class="contact-detail">
+        <div class="label">Hours</div>
+        <div class="value">Mon–Sat, 8:00am – 6:00pm</div>
+      </div>
+      <div class="contact-detail">
+        <div class="label">Service area</div>
+        <div class="value">Greater metro area &amp; surrounding counties</div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('This is a demo form — connected when the site goes live.');">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" placeholder="(555) 000-0000" required>
+      </div>
+      <div class="field">
+        <label for="msg">What's going on with your roof?</label>
+        <textarea id="msg" placeholder="Leak, storm damage, replacement, inspection..."></textarea>
+      </div>
+      <button class="submit-btn" type="submit">Request a Free Quote</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">ABC Roofing</div>
+    <div>© 2026 ABC Roofing. Demo site — not a live business.</div>
+  </div>
+</footer>
+
+</body>
+</html>
